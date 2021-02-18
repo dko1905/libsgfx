@@ -1,0 +1,4 @@
+# Meson
+.cache/
+builddir/
+compile_commands.json
