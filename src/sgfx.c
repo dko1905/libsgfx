@@ -46,12 +46,6 @@ struct sgfx_window *sgfx_open(uint32_t width, uint32_t height, const char *title
 	/* Select input/ */
 	XSelectInput(window->display, window->window, event_mask);
 
-	/* Flush everything. */
-	XEvent evt;
-	do {
-		XNextEvent(window->display, &evt);
-	} while (evt.type != 19); /* != MapNotify */
-
 	/* Create graphics context. */
 	window->gc = XCreateGC(window->display, window->window, 0, NULL);
 	if (window->gc < 0) {
@@ -82,6 +76,7 @@ char sgfx_poll(struct sgfx_window *window) {
 	XEvent e;
 	do {
 		XNextEvent(window->display, &e);
+		printf("D\n");
 		if (e.type == 2) /* KeyPress */
 			return XLookupKeysym(&e.xkey, 0);
 		else if (e.type == 4) /* ButtonPress */

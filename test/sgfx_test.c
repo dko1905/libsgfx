@@ -7,10 +7,12 @@ int main() {
 		perror("Failed to create window");
 		return 1;
 	}
+	printf("Hello\n");
 
 	do {
-		printf("%c ", sgfx_poll(window));
+		printf("%c\n", sgfx_poll(window));
 	} while (1);
+
 	sgfx_close(window);
 
 	return 0;
